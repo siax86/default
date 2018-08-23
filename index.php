@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Вход</title>
-    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
   </head>
 
   <body style="background:#9370DB">
@@ -17,10 +17,10 @@
               <div><img style="width:40px;height:40px;margin:10px 0 10px 0;"src="img/user-1633249_1280.png"></div>
               <form action="">
                 <div class="form-group">
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите логин">
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите логин" name="login">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль">
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль" name="password">
                 </div>
                 <div class="form-group form-check">
                   <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <script src="/lib/jquery/jquery.js"></script>
-    <script src="/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
   </body>
 </html>
