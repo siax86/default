@@ -13,8 +13,8 @@
         <div class="col-md-auto">
           <div style = "margin-top: 80px; border-radius: 20px;" class="card">
             <div class="card-body"> 
-              <div><img style="width:300px;height:65px;margin:-5px 0px 5px -8px;" src="img/1.png"></div>
-              <div><img style="width:40px;height:40px;margin:10px 0 10px 0;"src="img/user-1633249_1280.png"></div>
+              <div><img style="width:300px;height:65px;margin:-5px 0px 5px -8px;" src="/img/1.png"></div>
+              <div><img style="width:40px;height:40px;margin:10px 0 10px 0;"src="/img/user-1633249_1280.png"></div>
               <form action="">
                 <div class="form-group">
                   <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите логин" name="login">
