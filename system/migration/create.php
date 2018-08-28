@@ -53,7 +53,7 @@ $sql=
 	`middlename` varchar(100) NOT NULL COMMENT 'Отчество  пользователя', 
 	`login` varchar(50) NOT NULL COMMENT 'Имя входа в систему тестирования', 
 	`password` varchar(50) NOT NULL COMMENT 'Пароль',
-	`user_status` int(11) NULL COMMENT 'Сатус  ползователя( активен или  нет )', 
+	`user_status` int(11) NULL  COMMENT 'Сатус  ползователя( активен или  нет )', 
 	`delmark` int(11) NULL COMMENT 'скрытие при удалении, для сохранения статистики за прошлые периоды', 
 	PRIMARY KEY (id),
 	FOREIGN KEY (`user_status`) REFERENCES `user_status`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
