@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <button type="button" data-obj="user_status" data-query="create" class="btn btn-outline-success loadmodal" style="float: right;">Создать статус</button>
+    <button type="button" data-content="Содержимое 1..." data-obj="user_status" data-query="create" class="btn btn-outline-success loadmodal" style="float: right;">Создать статус</button>
   </div>
   <div class="сard-body">   
     <div class="mt-4 table-responsive justify-content-md-center">
@@ -14,9 +14,10 @@
         [
         { title: "id", data: "DT_RowId", className: "id"},
         { title: "Наименование", data: "name", className: "name" }
+        //{ title: "Цвет", data: "color", className: "color" }
         ];
 
-        signature = 'user';
+        signature = 'user_status';
 
 
     var dt = $('#datatable').DataTable( {
@@ -35,7 +36,6 @@
           }
         ],
         "ajax": "/api/datatable.php?signature=" + signature
-    } );
-
+    });
 
 </script>
