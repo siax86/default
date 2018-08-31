@@ -1,5 +1,6 @@
 <div class="card">
   <div class="card-header">
+    <h1>Группы пользователей</h1>
     <button type="button" data-obj="user_group" data-query="create" class="btn btn-outline-success loadmodal" style="float: right;">Создать группу</button>
   </div>
   <div class="сard-body">   

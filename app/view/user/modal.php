@@ -22,16 +22,16 @@
             <input type="text" class="form-control" id="middlename">
           </div>
           <div class="form-group">
-            <label for="surname">Логин</label>
-            <input type="text" class="form-control" id="surname">
+            <label for="login">Логин</label>
+            <input type="text" class="form-control" id="login">
           </div>
           <div class="form-group">
-            <label for="surname">Пароль</label>
-            <input type="text" class="form-control" id="surname">
+            <label for="password">Пароль</label>
+            <input type="text" class="form-control" id="password">
           </div>
           <div class="form-group">
-            <label for="surname">Статус пользователя</label>
-            <input type="text" class="form-control" id="surname">
+            <label for="user_status">Статус пользователя</label>
+            <input type="text" class="form-control" id="user_status">
           </div>
           <div class="form-group">
             <label for="delmark">delmark</label>

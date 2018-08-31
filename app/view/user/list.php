@@ -1,5 +1,6 @@
 <div class="card">
   <div class="card-header">
+    <h1 style="display: inline;">Пользователи</h1>
     <button type="button" data-obj="user" data-query="create" class="btn btn-outline-success loadmodal" style="float: right;">Создать пользователя</button>
   </div>
   <div class="сard-body">   
