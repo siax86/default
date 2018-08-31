@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Статус пользователя</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Создать группу</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -14,8 +14,8 @@
             <input type="text" class="form-control" id="name">
           </div>
           <div class="form-group">
-            <label for="color">Цвет</label>
-            <input type="text" class="form-control" id="color">
+            <label for="delmark">delmark</label>
+            <input type="text" class="form-control" id="delmark">
           </div>
           <!-- идентификатор -->
           <input type="hidden" name="id" id="id">
@@ -27,7 +27,4 @@
       </div>
     </div>
   </div>
-</div> 
-
- 
-
+</div>

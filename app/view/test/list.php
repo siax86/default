@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <button type="button" data-obj="user_status" data-query="create" class="btn btn-outline-success loadmodal" style="float: right;">Создать статус</button>
+    <button type="button" data-obj="test" data-query="create" class="btn btn-outline-success loadmodal" style="float: right;">Создать тест</button>
   </div>
   <div class="сard-body">   
     <div class="mt-4 table-responsive justify-content-md-center">
@@ -13,28 +13,17 @@
         Columns = 
         [
         { title: "id", data: "DT_RowId", className: "id"},
-        { title: "Наименование", data: "name", className: "name" },
-        { title: "Цвет", data: "color", className: "color" }
+        { title: "Название теста", data: "name", className: "name"},
+        { title: "delmark", data: "delmark", className: "delmark" }
         ];
 
-        signature = 'user_status';
+        signature = 'test';
 
 
     var dt = $('#datatable').DataTable( {
        "processing": true,
         "serverSide": true,
         columns: Columns,
-        "columnDefs": [
-          {
-            "render": function ( data, type, row ) {
-              return '<b style="color:' + row["color"] + ';">' + row["name"] + '</b>';
-            },
-            "targets": getColumnIndexesWithClass( Columns, "name" )
-          },
-          { 
-            "visible": false,  "targets": getColumnIndexesWithClass( Columns, "color" ) 
-          }
-        ],
         "ajax": "/api/datatable.php?signature=" + signature,
         "createdRow": function( row, data, dataIndex ) {
           $(row).addClass('loadmodal');
@@ -45,5 +34,3 @@
         }
       
     });
-
-</script>

@@ -104,43 +104,34 @@ if(isset($_SESSION['user']->id))
       $('body').on('click','.loadmodal',function() {
         var obj = $(this).data('obj');
         var query = $(this).data('query');
-        //var button = $(event.relatedTarget);
-        //var content = button.data('content');
+        var data = $(this).data('data');
+        console.log(data);
+
         switch (query) {
           case 'create':
             loadView('#modalbox',obj,'modal',function(){
-              console.log(button);
-              //$(this).find('#content').text(content); 
               $('#Modal').modal('show');
             });
             break;
 
           case 'update':
             loadView('#modalbox',obj,'modal',function(){
-              console.log(button);
-              //$(this).find('#content').text(content); 
+              $.each(data,function(key,val){
+                if(key == 'DT_RowId')
+                {
+                  $('#id').val(val);
+                }
+                else
+                {
+                  $('#' + key).val(val);
+                };
+              });
               $('#Modal').modal('show');
             });
             break;
         };
 
-        //var table = $('#datatable').DataTable();
-        $('#datatable').on( 'click', 'tr', function () {
-           // Get the rows id value
-          //var id = table.row( this ).id();
-          var id = this.id;
-          $(this).addClass('loadmodal');
-          $(this).attr('data-query', 'update');
-          $(this).attr('data-obj', 'user_status');
-          //$(this).attr('data-content', 'Содержимое 2...');
-          //var cla = document.getElementByClassName(loadmodal);
-          //var cla =$(this).hasClass('loadmodal');
-          //var cla =$('#idit').className;
-          //var cla = table.row( this ).class();
-          //var id = table.row( this ).id();
-          //alert(cla);
-          //$('#Modal').modal('show');
-        });
+        
       });
 
     </script>

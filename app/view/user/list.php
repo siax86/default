@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <button type="button" data-obj="user_status" data-query="create" class="btn btn-outline-success loadmodal" style="float: right;">Создать статус</button>
+    <button type="button" data-obj="user" data-query="create" class="btn btn-outline-success loadmodal" style="float: right;">Создать пользователя</button>
   </div>
   <div class="сard-body">   
     <div class="mt-4 table-responsive justify-content-md-center">
@@ -13,28 +13,22 @@
         Columns = 
         [
         { title: "id", data: "DT_RowId", className: "id"},
-        { title: "Наименование", data: "name", className: "name" },
-        { title: "Цвет", data: "color", className: "color" }
+        { title: "Имя пользователя", data: "name", className: "name"},
+        { title: "Фамилия пользователя", data: "surname", className: "surname" },
+        { title: "Отчество пользователя", data: "middlename", className: "middlename" },
+        { title: "Логин", data: "login", className: "login"},
+        { title: "Пароль", data: "password", className: "password" },
+        { title: "Статус пользователя", data: "user_status", className: "user_status"},
+        { title: "delmark", data: "delmark", className: "delmark" }
         ];
 
-        signature = 'user_status';
+        signature = 'user';
 
 
     var dt = $('#datatable').DataTable( {
        "processing": true,
         "serverSide": true,
         columns: Columns,
-        "columnDefs": [
-          {
-            "render": function ( data, type, row ) {
-              return '<b style="color:' + row["color"] + ';">' + row["name"] + '</b>';
-            },
-            "targets": getColumnIndexesWithClass( Columns, "name" )
-          },
-          { 
-            "visible": false,  "targets": getColumnIndexesWithClass( Columns, "color" ) 
-          }
-        ],
         "ajax": "/api/datatable.php?signature=" + signature,
         "createdRow": function( row, data, dataIndex ) {
           $(row).addClass('loadmodal');
@@ -46,4 +40,3 @@
       
     });
 
-</script>
