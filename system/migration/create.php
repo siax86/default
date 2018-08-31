@@ -19,6 +19,97 @@ try {
 	print_r($e);
 	echo '</pre>';	
 };
+//------------------------------------------------БЛОК конфигурация
+//----создание таблицы конфиг
+$sql=
+"CREATE TABLE 
+`testsystem`.`config` 
+( 
+	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
+	`name` varchar(100) NOT NULL COMMENT 'наименование конфигурации',
+	PRIMARY KEY (id)
+) 
+COLLATE 'utf8_general_ci'
+ENGINE=InnoDB
+COMMENT 'конфигурация'";
+try {
+	$query=db::init()->query($sql);
+} catch (Exception $e) {
+	echo '<pre>';
+	print_r($e);
+	echo '</pre>';
+};
+
+
+
+//----создание таблицы доступов
+$sql=
+"CREATE TABLE 
+`testsystem`.`components_composition_access` 
+( 
+	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
+	`name` varchar(100) NOT NULL COMMENT 'наименование уровней доступа',
+	PRIMARY KEY (id)
+) 
+COLLATE 'utf8_general_ci'
+ENGINE=InnoDB
+COMMENT 'конфигурация'";
+try {
+	$query=db::init()->query($sql);
+} catch (Exception $e) {
+	echo '<pre>';
+	print_r($e);
+	echo '</pre>';
+};
+//----создание таблицы компонентс
+
+$sql=
+"CREATE TABLE 
+`testsystem`.`components` 
+( 
+	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
+	`config` int(11) NULL COMMENT 'идентификатор конфигурации',
+	PRIMARY KEY (id),
+	FOREIGN KEY (`config`) REFERENCES `config`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
+	INDEX (`config`)
+) 
+COLLATE 'utf8_general_ci'
+ENGINE=InnoDB
+COMMENT 'компоненты для конфигурации'";
+try {
+	$query=db::init()->query($sql);
+} catch (Exception $e) {
+	echo '<pre>';
+	print_r($e);
+	echo '</pre>';
+};
+	//----создание таблицы конфиг компонентс_композитион
+$sql=
+"CREATE TABLE 
+`testsystem`.`components_composition` 
+( 
+	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
+	`name` varchar(100) NOT NULL COMMENT 'наименование компонента',
+	`components` int(11) NULL COMMENT 'идентификатор конфигурации',
+	`access` int(11) NULL COMMENT 'идентификатор конфигурации',
+	PRIMARY KEY (id),
+	FOREIGN KEY (`components`) REFERENCES `components`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
+	FOREIGN KEY (`access`) REFERENCES `components_composition_access`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
+	INDEX (`components`),
+	INDEX (`access`)
+) 
+COLLATE 'utf8_general_ci'
+ENGINE=InnoDB
+COMMENT 'компоненты для конфигурации'";
+try {
+	$query=db::init()->query($sql);
+} catch (Exception $e) {
+	echo '<pre>';
+	print_r($e);
+	echo '</pre>';
+};
+
+
 //________________________________________________БЛОК ПОЛЬЗОВАТЕЛЯ
 
 //---создание таблицы `Разбиение пользователей по группам`
@@ -39,9 +130,30 @@ try {
 } catch (Exception $e) {
 	echo '<pre>';
 	print_r($e);
-	echo '</pre>';	
+	echo '</pre>';
 };
 
+//---создание таблицы `роли пользователей`
+$sql=
+"CREATE TABLE 
+`testsystem`.`role` 
+( 
+	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
+	`name` varchar(100) NOT NULL COMMENT 'наименование статуса',
+	`delmark` int(11) NULL COMMENT 'скрытие при удалении, для сохранения статистики за прошлые периоды', 
+
+	PRIMARY KEY (id)
+) 
+COLLATE 'utf8_general_ci'
+ENGINE=InnoDB
+COMMENT 'роль пользователя'";
+try {
+	$query=db::init()->query($sql);
+} catch (Exception $e) {
+	echo '<pre>';
+	print_r($e);
+	echo '</pre>';
+};
 //--создание таблицы  `пользователи`
 $sql=
 "CREATE TABLE 
@@ -53,11 +165,14 @@ $sql=
 	`middlename` varchar(100) NOT NULL COMMENT 'Отчество  пользователя', 
 	`login` varchar(50) NOT NULL COMMENT 'Имя входа в систему тестирования', 
 	`password` varchar(50) NOT NULL COMMENT 'Пароль',
-	`user_status` int(11) NULL  COMMENT 'Сатус  ползователя( активен или  нет )', 
+	`user_status` int(11) NULL  COMMENT 'Сатус  ползователя( активен или  нет )',
+	`role` int(11) NULL  COMMENT 'роль  ползователя',  
 	`delmark` int(11) NULL COMMENT 'скрытие при удалении, для сохранения статистики за прошлые периоды', 
 	PRIMARY KEY (id),
 	FOREIGN KEY (`user_status`) REFERENCES `user_status`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
-	INDEX (`user_status`)
+	FOREIGN KEY (`role`) REFERENCES `role`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
+	INDEX (`user_status`),
+	INDEX (`role`)
 ) 
 COLLATE 'utf8_general_ci'
 ENGINE=InnoDB
@@ -163,6 +278,8 @@ try {
 	print_r($e);
 	echo '</pre>';	
 };
+
+
 
 //--_создание таблицы `ответы к тесту`
 $sql=
@@ -294,6 +411,5 @@ try {
 	print_r($e);
 	echo '</pre>';	
 };
-
 
 ?>

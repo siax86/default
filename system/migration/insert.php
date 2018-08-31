@@ -7,6 +7,7 @@ $col_group=5;
 $col_test=5;
 $col_question=5;
 $col_answer=10;
+$col_role=3;
 $t_start = mktime(0,0,0,2006,1,1); 
 $t_end  = time(); 
 
@@ -58,6 +59,20 @@ for ($i=0; $i < $col_group; $i++)
 };
 echo '-----------------------------------группы: '.$i.'<br>';
 
+/*---------заполнение справочника роли пользователей */
+$sql="INSERT INTO `testsystem`.`role`(`name`,`delmark`) VALUES (:name, :delmark)";
+for ($i=1; $i < ($col_role+1); $i++)
+{	
+	$param = array(
+		'name' => 'роль'.$i,
+		'delmark' => '0'
+	);
+
+	$id=db::init()->insert($sql,$param);
+	echo 'insertgr id: '.$id.'<br>';
+};
+echo '-----------------------------------роли: '.$i.'<br>';
+
 
 /*---------заполнение справочника тесты */
 $sql="INSERT INTO `testsystem`.`test`(`name`,`delmark`) VALUES (:name, :delmark)";
@@ -87,11 +102,33 @@ for ($i=0; $i < $col_question; $i++)
 	echo 'insertgr id: '.$id.'<br>';
 };
 echo '-----------------------------------вопросы: '.$i.'<br>';
+/*---------заполнение test_question_registr */
+$sql="INSERT INTO `testsystem`.`test_question_registr`(`question`,`test`) VALUES (:question, :test)";
+for ($i=0; $i < $col_question; $i++)
+{	
+	$param = array(
+		'question' => rand(1,$col_question),
+		'test' => rand(1,$col_test)
+	);
 
+	$id=db::init()->insert($sql,$param);
+	echo 'insertgr id: '.$id.'<br>';
+};
+echo '-----------------------------------test_question_registr: '.$i.'<br>';
 
+/*---------заполнение user_group_user_registr */
+$sql="INSERT INTO `testsystem`.`user_group_user_registr`(`group_name`,`user`) VALUES (:group_name, :user)";
+for ($i=0; $i < $col_question; $i++)
+{	
+	$param = array(
+		'group_name' => rand(1,$col_group),
+		'user' => rand(1,$col_user)
+	);
 
-
-
+	$id=db::init()->insert($sql,$param);
+	echo 'insertgr id: '.$id.'<br>';
+};
+echo '-----------------------------------test_question_registr: '.$i.'<br>';
 
 /*---------заполнение справочника ответы */
 $sql="INSERT INTO `testsystem`.`answer`(`text`,`question`,`flag`,`delmark`) VALUES (:text, :question, :flag, :delmark)";
@@ -162,5 +199,59 @@ for ($i=0; $i < $col_question; $i++)
 	echo 'insertgr id: '.$id.'<br>';
 };
 echo '-----------------------------------статистика ответы: '.$i.'<br>';
+
+/*---------заполнение справочника конфиг */
+$sql="INSERT INTO `testsystem`.`config`(`name`) VALUES (:name)";
+for ($i=0; $i < $col_question; $i++)
+{	
+	$param = array(
+		'name' =>'конфигурация'.$i
+	);
+
+	$id=db::init()->insert($sql,$param);
+	echo 'insertgr id: '.$id.'<br>';
+};
+echo '-----------------------------------config: '.$i.'<br>';
+
+/*---------заполнение справочника таблица-доступов */
+$sql="INSERT INTO `testsystem`.`components_composition_access`(`name`) VALUES (:name)";
+for ($i=0; $i < 6; $i++)
+{	
+	$param = array(
+		'name' =>'уровень доступа'.$i
+	);
+
+	$id=db::init()->insert($sql,$param);
+	echo 'insertgr id: '.$id.'<br>';
+};
+echo '-----------------------------------доступы: '.$i.'<br>';
+
+/*---------заполнение таблицы components */
+$sql="INSERT INTO `testsystem`.`components`(`config`) VALUES (:config)";
+for ($i=0; $i < 6; $i++)
+{	
+	$param = array(
+		'config' =>rand(1,$col_question)
+	);
+	$id=db::init()->insert($sql,$param);
+	echo 'insertgr id: '.$id.'<br>';
+};
+echo '-----------------------------------components1: '.$i.'<br>';
+
+/*---------заполнение справочника components_composition */
+$sql="INSERT INTO `testsystem`.`components_composition`(`name`,`components`,`access`) VALUES (:name, :components, :access)";
+for ($i=0; $i < $col_user; $i++)
+{	
+	$param = array(
+		'name' => 'композиция'.rand(1,$col_user),
+		'components' => rand(1,6),
+		'access' => rand(1,5)
+	);
+	$id=db::init()->insert($sql,$param);
+	echo 'insertgr id: '.$id.'<br>';
+};
+echo '-----------------------------------components_composition: '.$i.'<br>';
+
+
 
 ?>
