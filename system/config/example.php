@@ -1,8 +1,11 @@
 <?php
 /*Глобальная конфигурация приложения
 Создайте на одном уровне с этим файлом файл config.current.php? скопируйте в него содержимое и добавьте параметры своего локального сервера*/
+Илья, [01.09.18 01:54]
+
 $GLOBALS['config'] = array(
-	'db_user_name' => 'root', 
-	'db_user_password' =>'1'
+  'db_user_name' => 'root', 
+  'db_user_password' =>'',
+  'db_name' =>'testsystem'
 );
 ?>

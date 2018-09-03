@@ -21,8 +21,9 @@ foreach ($components as $component)
 {
 
 	$tmp_component = new stdClass();
-	$tmp_component->name = $component['name'];
+/*	$tmp_component->name = $component['name'];*/
 	$tmp_component->access = array();
+	
 
 	$sql = "SELECT * FROM `testsystem`.`access` WHERE `components` = :components";
 	$param = array('components'=>$component['id']);

@@ -8,6 +8,7 @@ class user extends main
 	function __construct($data)
 	{
 		parent::__construct($data,__CLASS__);
+		parent::registr(__CLASS__,'group',$this->id);
 	}
 
 	public static function auth($data)
@@ -18,6 +19,7 @@ class user extends main
 		$id=db::init()->getObj($sql,$data);
 		return $id;
 	}
+
 
 
 }

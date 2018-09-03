@@ -1,5 +1,5 @@
 <?php
-@session_start();
+include_once $_SERVER['DOCUMENT_ROOT'].'/system/declaration.php';
 if(isset($_SESSION['user']->id))
 {
 ?>
@@ -10,6 +10,7 @@ if(isset($_SESSION['user']->id))
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Dashboard</title>
     <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.css">
+    <!--<link rel="stylesheet" href="/lib/bootstrap/jquery/jquery.dataTables.css"> -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
   
 
@@ -75,9 +76,11 @@ if(isset($_SESSION['user']->id))
           dataType: "json",
           success: function(result){
             user = result;
-            console.log(user);
+            //console.log(user);
             user.loadComponent = function(){
               $.each(this.config.components,function(component,property){
+                console.log(component);
+                console.log(property);
                 var navbar_link = '<li class="nav-item"><a data-component="' + component + '" class="nav-link component-link" href="#">' + property.name  + '</a></li>';
                 $('.second-navbar-links').append(navbar_link);
               });

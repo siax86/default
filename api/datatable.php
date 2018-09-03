@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/system/class/db.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/system/declaration.php';
 @session_start();
 
 $columns = array();
@@ -30,9 +30,9 @@ $table = $_REQUEST['signature'];
 $primaryKey = 'id';
  
 $sql_details = array(
-    'user' => 'testuser',
-    'pass' => '123',
-    'db'   => 'testsystem',
+    'user' => $GLOBALS['config']['db_user_name'],
+    'pass' => $GLOBALS['config']['db_user_password'],
+    'db'   => $GLOBALS['config']['db_name'],
     'host' => 'localhost'
 );
  
