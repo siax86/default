@@ -1,3 +1,6 @@
+//{"id":"1","name":"Иван","group":[{"id":"1","name":"Менеджер"}]}
+// {"id":"1","name":"Cтатус0","color":"1"}
+//url: /api/call.php?client=app&query=get&data={"class":"user","data":{"id":"current"}}
 {
 	"id":1,
 	"name":"Иван",

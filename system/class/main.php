@@ -6,7 +6,7 @@ class main
 {
 	function __construct($data,$class)
 	{
-		if(isset($data['id']))
+		if($data['id'] != '')
 		{
 			if(count($data) == 1)
 			{

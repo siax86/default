@@ -49,6 +49,7 @@ $sql=
 ( 
 	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
 	`config` int(11) NULL COMMENT 'идентификатор конфигурации',
+	`name` varchar(100) NOT NULL COMMENT 'имя компонента',
 	`signature` varchar(100) NOT NULL COMMENT 'сигнатура компонента',
 	PRIMARY KEY (id),
 	FOREIGN KEY (`config`) REFERENCES `".$GLOBALS['config']['db_name']."`.`config`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,

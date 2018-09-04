@@ -1,8 +1,8 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/system/declaration.php';
 db::init();
-$col_status=5;
-$col_user=3;
+$col_status=1;
+$col_user=1;
 $col_group=5;
 $col_test=5;
 $col_question=5;
@@ -33,7 +33,7 @@ $sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`role`(`name`,`delmark`) V
 for ($i=0; $i < $col_user; $i++)
 {	
 	$param = array(
-		'name' => 'Статус'.$i,
+		'name' => 'роль'.$i,
 		'delmark' => '1'
 	);
 
@@ -69,7 +69,7 @@ for ($i=0; $i < $col_user; $i++)
 		'user_status' => rand(1,($col_status)), /* это id юзерстатуса*/
 		'delmark' => '0',
 		'role'=> rand(1,$col_user),
-		'config'=>rand(1,5)
+		'config'=>1 //rand(1,5)
 	);
 
 	$id=db::init()->insert($sql,$param);
@@ -150,10 +150,10 @@ echo '-----------------------------------test_question_registr: '.$i.'<br>';
 
 /*---------заполнение registr_user_group */
 $sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`registr_user_group`(`group`,`user`) VALUES (:group, :user)";
-for ($i=0; $i < $col_question; $i++)
+for ($i=0; $i < $col_group; $i++)
 {	
 	$param = array(
-		'group' => rand(1,$col_group),
+		'group' => ($i+1),
 		'user' => rand(1,$col_user)
 	);
 
@@ -233,31 +233,36 @@ for ($i=0; $i < $col_question; $i++)
 echo '-----------------------------------статистика ответы: '.$i.'<br>';
 
 
-/*---------заполнение таблицы components */
-$sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`components`(`config`,`signature`) VALUES (:config, :signature)";
+/*----------заполнение таблицы components */
+$sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`components`(`config`,`name`,`signature`) VALUES (:config, :name, :signature)";
 $tmp=array();
-$tmp[]='user';
-$tmp[]='user_status';
-$tmp[]='group';
+$tmp[]='пользователь';
+$tmp[]='статус пользователя';
+$tmp[]='группа пользователя';
+$tmp1=array();
+$tmp1[]='user';
+$tmp1[]='user_status';
+$tmp1[]='group';
 for ($i=0; $i < 3; $i++)
 	
 {	
 	$param = array(
-		'config' =>rand(1,$col_question),
-		'signature' =>$tmp[$i] // значение может быть так же user_status или group 
+		'config' =>rand(1,1),
+		'name' => $tmp[$i],
+		'signature' =>$tmp1[$i] // значение может быть так же user_status или group 
 	);
 	$id=db::init()->insert($sql,$param);
 	echo 'insertgr id: '.$id.'<br>';
 };
 echo '-----------------------------------components1: '.$i.'<br>';
 
-/*---------заполнение справочника components_composition */
+/*---------заполнение справочника `access */
 $sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`access`(`components`,`access`) VALUES ( :components, :access)";
-for ($i=0; $i < $col_user; $i++)
+for ($i=1; $i < 4; $i++)
 {	
 	$param = array(
-		'components' => rand(1,3),
-		'access' => rand(1,3)
+		'components' => 1, //rand(1,3),
+		'access' => $i//rand(1,3)
 	);
 	$id=db::init()->insert($sql,$param);
 	echo 'insertgr id: '.$id.'<br>';

@@ -24,7 +24,7 @@ class api
 			break;
 
 			case 'get':
-
+// реализовать возвращение  коллекции обьекта ( возвращает  все  обьекты  указанного типа, работает  при условии  , если в $data придет  только $obj [{},{},{},{}] query=get&data={"obj":"user_status"} ) -   выбраю  все  id создаю обьекты
 			$data= json_decode($request['data']);
 
 			if($data->class == 'user' && $data->data->id == 'current')
@@ -41,7 +41,12 @@ class api
 			break;
 
 			case 'set':
-
+			$object= new $data->class((array)$data->data);	
+			echo json_encode($object,JSON_UNESCAPED_UNICODE);
+// если  обьеукт  создался  то :
+			
+// {"id":"1"}
+//{"status":"error"}			
 			break;
 
 			default:
