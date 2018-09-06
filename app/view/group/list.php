@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header">
     <h1>Группы пользователей</h1>
-    <button type="button" data-obj="user_group" data-query="create" class="btn btn-outline-success loadmodal" style="float: right;">Создать группу</button>
+    <button type="button" data-obj="group" data-query="create" class="btn btn-outline-success loadmodal" style="float: right;">Создать группу</button>
   </div>
   <div class="сard-body">   
     <div class="mt-4 table-responsive justify-content-md-center">
@@ -18,7 +18,7 @@
         { title: "delmark", data: "delmark", className: "delmark" }
         ];
 
-        signature = 'user_group';
+        signature = 'group';
 
 
     var dt = $('#datatable').DataTable( {

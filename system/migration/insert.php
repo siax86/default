@@ -180,6 +180,7 @@ echo '-----------------------------------ответы: '.$i.'<br>';
 
 /*---------заполнение справочника статистикс */
 $start = mktime(0,0,0,2006,1,1); 
+echo $start;
 $end  = time(); 
 $randomStamp = rand($start,$end); 
 $sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`statistiks`(`user`,`test`,`t_start`,`t_stop`,`flag`,`error_count`,`total_count`,`max_error_count`) VALUES (:user,:test,:t_start,:t_stop,:flag,:error_count,:total_count,:max_error_count)";
@@ -188,8 +189,10 @@ for ($i=0; $i < $col_test; $i++)
 	$param = array(
 		'user' => rand(1,$col_user),
 		'test' => rand(1,$col_test),
-		't_start' => date("Y-m-d H:i:s",rand($t_start,$t_end)),
-		't_stop' => date("Y-m-d H:i:s",rand($t_start,$t_end)),
+		/*'t_start' => date("Y-m-d H:i:s",rand($t_start,$t_end)),
+		't_stop' => date("Y-m-d H:i:s",rand($t_start,$t_end)),*/
+		't_start' => date('2010-12-03 03:27:04'),
+		't_stop' => date('2010-12-03 03:27:05'),
 		'flag' => rand(0,1),
 		'error_count' => rand(1,$col_answer),
 		'total_count' => rand(1,$col_answer),
@@ -208,8 +211,8 @@ for ($i=0; $i < $col_question; $i++)
 {	
 	$param = array(
 		'statistiks' => rand(1,$col_test),
-		't_start' => date("Y-m-d H:i:s",rand($t_start,$t_end)),
-		't_stop' => date("Y-m-d H:i:s",rand($t_start,$t_end))
+		't_start' => date('2010-12-03 03:27:04'),
+		't_stop' => date('2010-12-03 03:27:05')
 	);
 
 	$id=db::init()->insert($sql,$param);
