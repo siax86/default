@@ -27,16 +27,16 @@ class main
 					{
 						$this->$key = $value; 
 					};
-				}
+				};
 			}
 			else
 			{
-				//update
+				self::update($data,$class);
 			};
 		}
 		else
 		{
-			//insert, get new id and create obj by id (constructor)
+			self::insert($data,$class);
 		};
 	}
 
@@ -55,14 +55,84 @@ class main
 		};		
 	}
 
-	function insert()
+	function insert($data,$class)
 	{
+
+		$sql = "INSERT INTO `".$GLOBALS['config']['db_name']."`.`".$class."` (";
+		$values = "(";
+
+		foreach ($data as $key => $value) 
+		{
+			if($key != 'id')
+			{
+				if(class_exists($key))
+				{
+					$this->$key = new $key(array('id'=>$value));
+				}
+				else
+				{
+					$this->$key = $value; 
+				};
+
+				$sql .= "`".$key."`,";
+				$values .= ":".$key.",";
+			};
+		};
+
+		$sql = substr($sql, 0,-1).") VALUES ".substr($values, 0,-1).")";
+
+		try 
+		{
+			unset($data['id']);
+			$id = db::init()->insert($sql,$data);
+			$this->id = $id;
+		} 
+		catch (Exception $e) 
+		{
+			echo '<pre>';
+			print_r($e);
+			echo '</pre>';
+		};
+
 
 	}
 
-	function update()
+	function update($data,$class)
 	{
+		echo '<pre>';
+		print_r($data);
+		echo '</pre>';
+		$sql = "UPDATE `".$GLOBALS['config']['db_name']."`.`".$class."` SET ";
+		foreach ($data as $key => $value) 
+		{
+			if(class_exists($key))
+			{
+				$this->$key = new $key(array('id'=>$value));
+			}
+			else
+			{
+				$this->$key = $value; 
+			};
 
+			if ($key != 'id') 
+			{
+				$sql .= "`".$key."`=:".$key.",";
+			};	
+		};
+
+		$sql = substr($sql, 0,-1)." WHERE `id` = :id";
+
+		try 
+		{
+			$id = db::init()-> update($sql,$data);
+		} 
+		catch (Exception $e) 
+		{
+			echo '<pre>';
+			print_r($e);
+			echo '</pre>';
+			//логирование ошибки $e
+		};
 	}
 }
 ?>

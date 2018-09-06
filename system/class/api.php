@@ -2,6 +2,7 @@
 /**
 * api
 */
+//http://test.site/api/call.php?client=app&query=get&data={%22class%22:%22user%22,%22data%22:{%22id%22:%22current%22}}
 class api 
 {
 	
@@ -41,6 +42,7 @@ class api
 			break;
 
 			case 'set':
+			$data= json_decode($request['data']);
 			$object= new $data->class((array)$data->data);	
 			echo json_encode($object,JSON_UNESCAPED_UNICODE);
 // если  обьеукт  создался  то :
