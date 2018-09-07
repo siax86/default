@@ -3,7 +3,7 @@
     <h1 style="display: inline;">Пользователи</h1>
     <button type="button" data-obj="user" data-query="create" class="btn btn-outline-success loadmodal" style="float: right;">Создать пользователя</button>
   </div>
-  <div class="сard-body">   
+  <div style="margin-left: 100px;margin-right: 100px;" class="сard-body">   
     <div class="mt-4 table-responsive justify-content-md-center">
       <table id="datatable" class="table table-bordered table-secondary table-striped mt-4"></table>
     </div>
@@ -27,15 +27,15 @@
 
 
     var dt = $('#datatable').DataTable( {
-       "processing": true,
-        "serverSide": true,
-        columns: Columns,
-        "ajax": "/api/datatable.php?signature=" + signature,
-        "createdRow": function( row, data, dataIndex ) {
-          $(row).addClass('loadmodal');
-          $(row).attr('data-query', 'update');
-          $(row).attr('data-obj', signature);
-          $(row).attr('data-data', JSON.stringify(data));
+      "processing": true,
+      "serverSide": true,
+      columns: Columns,
+      "ajax": "/api/datatable.php?signature=" + signature,
+      "createdRow": function( row, data, dataIndex ) {
+        $(row).addClass('loadmodal');
+        $(row).attr('data-query', 'update');
+        $(row).attr('data-obj', signature);
+        $(row).attr('data-data', JSON.stringify(data));
 
         }
       

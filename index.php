@@ -47,6 +47,8 @@ if(isset($_SESSION['user']->id))
     <script src="/lib/jquery/jquery.js"></script>
     <script src="/lib/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+   <!-- <script type="text/javascript" charset="utf8" src="/js/script.js"></script> -->
     <script type="text/javascript">
           function getColumnIndexesWithClass( columns, className ) {
         var indexes = [];
@@ -108,7 +110,7 @@ if(isset($_SESSION['user']->id))
         var obj = $(this).data('obj');
         var query = $(this).data('query');
         var data = $(this).data('data');
-        console.log(data);
+        //console.log(data);
 
         switch (query) {
           case 'create':
@@ -137,7 +139,37 @@ if(isset($_SESSION['user']->id))
         
       });
 
-    </script>
+      $('body').on('click','.save',function() {         /*действия при нажатии кнопки "Сохранить"*/
+        /*собрать данные с формы и прислать их на сервер с помощью аякс-запроса*/
+        var msg = $('#formx').serializeArray();
+        var data = {};
+        $(msg).each(function(index, obj){
+          data[obj.name] = obj.value;
+        });
+
+        $.ajax({
+          url: '/api/call.php?client=app&query=set&data={"class":"user","data":'+JSON.stringify(data)+'}',
+          type: "POST",
+          
+          /*действия при ответе сервера в случае успеха*/
+          success: function(){
+            $("#modalbox .close").click();             /*закрыть модальное окно*/
+            var table = $('#datatable').DataTable();   /*перерисовать таблицу*/
+            table
+              .clear()
+              .draw();
+          },
+
+           /*действия при ответе сервера в случае ошибки*/
+            error:  function(){
+              alert('Возникла ошибка');
+          }
+
+        });
+      });
+      
+
+    </script> 
   </body>
 </html>
 <?php

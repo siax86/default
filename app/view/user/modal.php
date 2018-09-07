@@ -8,26 +8,28 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="formx">
+          <!-- идентификатор -->
+          <input type="hidden" name="id" id="id">
           <div class="form-group">
             <label for="name">Имя пользователя</label>
-            <input type="text" class="form-control" id="name">
+            <input name="name" type="text" class="form-control" id="name">
           </div>
           <div class="form-group">
             <label for="surname">Фамилия пользователя</label>
-            <input type="text" class="form-control" id="surname">
+            <input name="surname" type="text" class="form-control" id="surname">
           </div>
           <div class="form-group">
             <label for="middlename">Отчество пользователя</label>
-            <input type="text" class="form-control" id="middlename">
+            <input name="middlename" type="text" class="form-control" id="middlename">
           </div>
           <div class="form-group">
             <label for="login">Логин</label>
-            <input type="text" class="form-control" id="login">
+            <input name="login" type="text" class="form-control" id="login">
           </div>
           <div class="form-group">
             <label for="password">Пароль</label>
-            <input type="text" class="form-control" id="password">
+            <input name="password" type="text" class="form-control" id="password">
           </div>
           <div class="form-group">
             <label for="user_status">Статус пользователя</label>
@@ -37,13 +39,11 @@
             <label for="delmark">delmark</label>
             <input type="text" class="form-control" id="delmark">
           </div>
-          <!-- идентификатор -->
-          <input type="hidden" name="id" id="id">
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-        <button type="button" class="btn btn-primary">Сохранить</button>
+        <button type="button" class="save btn btn-primary">Сохранить</button>
       </div>
     </div>
   </div>
