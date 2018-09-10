@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Создать пользователя</h5>
+        <!-- <h5 class="modal-title" id="exampleModalLabel">Создать пользователя</h5> -->
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -33,11 +33,11 @@
           </div>
           <div class="form-group">
             <label for="user_status">Статус пользователя</label>
-            <input type="text" class="form-control" id="user_status">
+            <input name="user_status" type="text" class="form-control" id="user_status">
           </div>
           <div class="form-group">
             <label for="delmark">delmark</label>
-            <input type="text" class="form-control" id="delmark">
+            <input name="delmark" type="text" class="form-control" id="delmark">
           </div>
         </form>
       </div>
