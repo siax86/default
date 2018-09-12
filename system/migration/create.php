@@ -394,4 +394,59 @@ try {
 	echo '</pre>';	
 };
 
+//--- создание  вьюшки  list_user 
+$sql= 
+"SELECT 'id' FROM `".$GLOBALS['config']['db_name']."`.`user`
+LEFT JOIN
+`".$GLOBALS['config']['db_name']."`.`user_status`
+ON
+`user`.`user_status` = `user_status`.`id`";
+/*"CREATE VIEW list_user AS SELECT
+
+`user`.`id`, 
+`user`.`name`, 
+`user`.`surname`, 
+`user`.`middlename`, 
+`user`.`login`, 
+`user`.`password`, 
+`user`.`user_status`,
+`user_status`.`name` AS `user_status_name`,
+`user`.`role`, 
+`role`.`name` AS `role_name`,
+`user`.`config`,
+`config`.`name` AS `config_name`,
+`user`.`delmark` 
+FROM 
+`".$GLOBALS['config']['db_name']."`.`user`
+LEFT JOIN
+`".$GLOBALS['config']['db_name']."`.`user_status`
+ON
+`user`.`user_status` = `user_status`.`id`,
+LEFT JOIN
+`".$GLOBALS['config']['db_name']."`.`role`
+ON
+`user`.`role` = `role`.`id`,
+LEFT JOIN
+`".$GLOBALS['config']['db_name']."`.`config`
+ON
+`user`.`config` = `config`.`id`;
+ENGINE = InnoDB
+COMMENT 'Вьюшка пользователя'";
+*/
+
+
+try {
+	$query=db::init()->query($sql);
+	echo $sql;
+	echo '________________';
+	//echo $query;
+    echo '<pre>';
+	print_r($query);
+	echo '</pre>';	
+} catch (Exception $e) {
+	echo '<pre>';
+	print_r($e);
+	echo '</pre>';	
+};
+
 ?>
