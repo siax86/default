@@ -183,13 +183,12 @@ $start = mktime(0,0,0,2006,1,1);
 echo '----------qwerty-----------'.$start.'<br>';
 $end  = time(); 
 $randomStamp = rand($start,$end); 
-$sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`statistiks`(`user`,`test`,`t_start`,`t_stop`,`flag`,`error_count`,`total_count`,`max_error_count`) VALUES (:user,:test,:t_start,:t_stop,:flag,:error_count,:total_count,:max_error_count)";
+$sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`statistiks`(`user`,`test`,`t_stop`,`flag`,`error_count`,`total_count`,`max_error_count`) VALUES (:user,:test,:t_stop,:flag,:error_count,:total_count,:max_error_count)";
 for ($i=0; $i < $col_test; $i++)
 {	
 	$param = array(
 		'user' => rand(1,$col_user),
 		'test' => rand(1,$col_test),
-		't_start' => date("Y-m-d H:i:s",rand($t_start,$t_end)),
 		't_stop' => date("Y-m-d H:i:s",rand($t_start,$t_end)),
 		'flag' => rand(0,1),
 		'error_count' => rand(1,$col_answer),
@@ -204,12 +203,11 @@ echo '-----------------------------------статистика ститистик
 
 /*---------заполнение справочника статистика-вопросы */
 
-$sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`st_question`(`statistiks`,`t_start`,`t_stop`) VALUES (:statistiks, :t_start, :t_stop)";
+$sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`st_question`(`statistiks`,`t_stop`) VALUES (:statistiks, :t_stop)";
 for ($i=0; $i < $col_question; $i++)
 {	
 	$param = array(
 		'statistiks' => rand(1,$col_test),
-		't_start' => date("Y-m-d H:i:s",rand($t_start,$t_end)),
 		't_stop' => date("Y-m-d H:i:s",rand($t_start,$t_end))
 	);
 
@@ -240,20 +238,20 @@ $tmp=array();
 $tmp[]='пользователь';
 $tmp[]='статус пользователя';
 $tmp[]='группа пользователя';
-$tmp[]='права доступа';
 $tmp[]='роль';
 $tmp[]='тест';
 $tmp[]='вопросы';
 $tmp[]='ответы';
+$tmp[]='конфигурация';
 $tmp1=array();
 $tmp1[]='user';
 $tmp1[]='user_status';
 $tmp1[]='group';
-$tmp1[]='access';
 $tmp1[]='role';
 $tmp1[]='test';
 $tmp1[]='question';
 $tmp1[]='answer';
+$tmp1[]='config';
 for ($i=0; $i < 8; $i++)
 	
 {	
@@ -279,61 +277,5 @@ for ($i=1; $i < 4; $i++)
 	echo 'insertgr id: '.$id.'<br>';
 };
 echo '-----------------------------------access: '.$i.'<br>';
-
-$sql= 
-"SELECT `user`.`name`, `user_status`.`name` FROM `".$GLOBALS['config']['db_name']."`.`user`
-LEFT JOIN
-`".$GLOBALS['config']['db_name']."`.`user_status`
-ON
-`user`.`user_status` = `user_status`.`id`";
-/*"CREATE VIEW list_user AS SELECT
-
-`user`.`id`, 
-`user`.`name`, 
-`user`.`surname`, 
-`user`.`middlename`, 
-`user`.`login`, 
-`user`.`password`, 
-`user`.`user_status`,
-`user_status`.`name` AS `user_status_name`,
-`user`.`role`, 
-`role`.`name` AS `role_name`,
-`user`.`config`,
-`config`.`name` AS `config_name`,
-`user`.`delmark` 
-FROM 
-`".$GLOBALS['config']['db_name']."`.`user`
-LEFT JOIN
-`".$GLOBALS['config']['db_name']."`.`user_status`
-ON
-`user`.`user_status` = `user_status`.`id`,
-LEFT JOIN
-`".$GLOBALS['config']['db_name']."`.`role`
-ON
-`user`.`role` = `role`.`id`,
-LEFT JOIN
-`".$GLOBALS['config']['db_name']."`.`config`
-ON
-`user`.`config` = `config`.`id`;
-ENGINE = InnoDB
-COMMENT 'Вьюшка пользователя'";
-*/
-
-
-try {
-	$query=db::init()->getall($sql);
-	echo $sql;
-	echo '________________';
-	//echo $query;
-    echo '<pre>';
-	print_r($query);
-	echo '</pre>';	
-} catch (Exception $e) {
-	echo '<pre>';
-	print_r($e);
-	echo '</pre>';	
-};
-
-
 
 ?>

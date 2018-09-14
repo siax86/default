@@ -2,7 +2,8 @@
 /**
 * api
 */
-//http://test.site/api/call.php?client=app&query=get&data={%22class%22:%22user%22,%22data%22:{%22id%22:%22current%22}}
+include_once $_SERVER['DOCUMENT_ROOT'].'/system/config/config.current.php';
+
 class api 
 {
 	
@@ -25,22 +26,48 @@ class api
 			break;
 
 			case 'get':
-			// реализовать возвращение  коллекции( массив обьектов) обьекта ( возвращает  все  обьекты  указанного типа, работает  при условии  , если в $data придет  только $obj 
-			// пример запроса query=get&data={"obj":"user_status"}   
-			// алгоритм - выбраю  все  id создаю обьекты, помещаю их в массив, делаю json_encode
-			//пример структуры возвращаемых данных [{},{},{},{}] 
-			// пример возвращаемых данных [{"id":"1","name:"статуc0", "color":"1"}]
+
+
 			$data= json_decode($request['data']);
 
-			if($data->class == 'user' && $data->data->id == 'current')
+			if(isset($data->data)) 
 			{
-				echo json_encode($_SESSION['user'],JSON_UNESCAPED_UNICODE);
+				if($data->class == 'user' && $data->data->id == 'current')
+				{
+					echo json_encode($_SESSION['user'],JSON_UNESCAPED_UNICODE); 
+				}
+				else
+				{
+					$object= new $data->class((array)$data->data);	
+
+					echo json_encode($object,JSON_UNESCAPED_UNICODE);
+				};
 			}
 			else
 			{
-				$object= new $data->class((array)$data->data);	
-				echo json_encode($object,JSON_UNESCAPED_UNICODE);
-			}
+				$sql=
+				"SELECT `id` FROM `".$GLOBALS['config']['db_name']."`.`".$data->class."`";
+				db::init();
+				try {
+					$ids=db::init()->getAll($sql);
+				} catch(Exception $e) {
+					echo '<pre>';
+					print_r($e);
+					echo '</pre>';
+
+				}
+				
+				$result = array();
+				foreach ($ids as $id)
+				{
+					$result[] = new $data->class($id);
+				};
+				echo json_encode($result,JSON_UNESCAPED_UNICODE);
+
+			};
+
+
+
 
 
 			break;
@@ -49,10 +76,6 @@ class api
 			$data= json_decode($request['data']);
 			$object= new $data->class((array)$data->data);	
 			echo json_encode($object,JSON_UNESCAPED_UNICODE);
-// если  обьеукт  создался  то :
-			
-// {"id":"1"}
-//{"status":"error"}			
 			break;
 
 			default:

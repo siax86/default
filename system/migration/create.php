@@ -26,9 +26,9 @@ $sql=
 "CREATE TABLE 
 `".$GLOBALS['config']['db_name']."`.`config` 
 ( 
-	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
-	`name` varchar(100) NOT NULL COMMENT 'наименование конфигурации',
-	PRIMARY KEY (id)
+`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
+`name` varchar(100) NOT NULL COMMENT 'наименование конфигурации',
+PRIMARY KEY (id)
 ) 
 COLLATE 'utf8_general_ci'
 ENGINE=InnoDB
@@ -47,13 +47,13 @@ $sql=
 "CREATE TABLE 
 `".$GLOBALS['config']['db_name']."`.`components` 
 ( 
-	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
-	`config` int(11) NULL COMMENT 'идентификатор конфигурации',
-	`name` varchar(100) NOT NULL COMMENT 'имя компонента',
-	`signature` varchar(100) NOT NULL COMMENT 'сигнатура компонента',
-	PRIMARY KEY (id),
-	FOREIGN KEY (`config`) REFERENCES `".$GLOBALS['config']['db_name']."`.`config`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
-	INDEX (`config`)
+`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
+`config` int(11) NULL COMMENT 'идентификатор конфигурации',
+`name` varchar(100) NOT NULL COMMENT 'имя компонента',
+`signature` varchar(100) NOT NULL COMMENT 'сигнатура компонента',
+PRIMARY KEY (id),
+FOREIGN KEY (`config`) REFERENCES `".$GLOBALS['config']['db_name']."`.`config`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
+INDEX (`config`)
 ) 
 COLLATE 'utf8_general_ci'
 ENGINE=InnoDB
@@ -70,12 +70,12 @@ $sql=
 "CREATE TABLE 
 `".$GLOBALS['config']['db_name']."`.`access` 
 ( 
-	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
-	`components` int(11) NULL COMMENT 'идентификатор конфигурации',
-	`access` int(1) NULL COMMENT 'идентификатор конфигурации',
-	PRIMARY KEY (id),
-	FOREIGN KEY (`components`) REFERENCES `".$GLOBALS['config']['db_name']."`.`components`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
-	INDEX (`components`)
+`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
+`components` int(11) NULL COMMENT 'идентификатор конфигурации',
+`access` int(1) NULL COMMENT 'идентификатор конфигурации',
+PRIMARY KEY (id),
+FOREIGN KEY (`components`) REFERENCES `".$GLOBALS['config']['db_name']."`.`components`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
+INDEX (`components`)
 ) 
 COLLATE 'utf8_general_ci'
 ENGINE=InnoDB
@@ -96,10 +96,10 @@ $sql=
 "CREATE TABLE 
 `".$GLOBALS['config']['db_name']."`.`user_status` 
 ( 
-	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
-	`name` varchar(100) NOT NULL COMMENT 'наименование статуса',
-	`color` varchar(100) NOT NULL COMMENT 'цвет статуса',
-	PRIMARY KEY (id)
+`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
+`name` varchar(100) NOT NULL COMMENT 'наименование статуса',
+`color` varchar(100) NOT NULL COMMENT 'цвет статуса',
+PRIMARY KEY (id)
 ) 
 COLLATE 'utf8_general_ci'
 ENGINE=InnoDB
@@ -117,11 +117,11 @@ $sql=
 "CREATE TABLE 
 `".$GLOBALS['config']['db_name']."`.`role` 
 ( 
-	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
-	`name` varchar(100) NOT NULL COMMENT 'наименование статуса',
-	`delmark` int(11) NULL COMMENT 'скрытие при удалении, для сохранения статистики за прошлые периоды', 
+`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
+`name` varchar(100) NOT NULL COMMENT 'наименование статуса',
+`delmark` int(11) NULL COMMENT 'скрытие при удалении, для сохранения статистики за прошлые периоды', 
 
-	PRIMARY KEY (id)
+PRIMARY KEY (id)
 ) 
 COLLATE 'utf8_general_ci'
 ENGINE=InnoDB
@@ -138,23 +138,23 @@ $sql=
 "CREATE TABLE 
 `".$GLOBALS['config']['db_name']."`.`user` 
 ( 
-	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
-	`name` varchar(100) NOT NULL COMMENT 'Имя пользователя',
-	`surname` varchar(100) NOT NULL COMMENT 'Фамилия  пользователя',
-	`middlename` varchar(100) NOT NULL COMMENT 'Отчество  пользователя', 
-	`login` varchar(50) NOT NULL COMMENT 'Имя входа в систему тестирования', 
-	`password` varchar(50) NOT NULL COMMENT 'Пароль',
-	`user_status` int(11) NULL  COMMENT 'Сатус  ползователя( активен или  нет )',
-	`role` int(11) NULL  COMMENT 'роль  ползователя',  
-	`config` int(11) NULL  COMMENT 'конфиг id',  
-	`delmark` int(11) NULL COMMENT 'скрытие при удалении, для сохранения статистики за прошлые периоды', 
-	PRIMARY KEY (id),
-	FOREIGN KEY (`user_status`) REFERENCES `".$GLOBALS['config']['db_name']."`.`user_status`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
-	FOREIGN KEY (`role`) REFERENCES `".$GLOBALS['config']['db_name']."`.`role`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
-	FOREIGN KEY (`config`) REFERENCES `".$GLOBALS['config']['db_name']."`.`config`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
-	INDEX (`user_status`),
-	INDEX (`role`),
-	INDEX (`config`)
+`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
+`name` varchar(100) NOT NULL COMMENT 'Имя пользователя',
+`surname` varchar(100) NOT NULL COMMENT 'Фамилия  пользователя',
+`middlename` varchar(100) NOT NULL COMMENT 'Отчество  пользователя', 
+`login` varchar(50) NOT NULL COMMENT 'Имя входа в систему тестирования', 
+`password` varchar(50) NOT NULL COMMENT 'Пароль',
+`user_status` int(11) NULL  COMMENT 'Сатус  ползователя( активен или  нет )',
+`role` int(11) NULL  COMMENT 'роль  ползователя',  
+`config` int(11) NULL  COMMENT 'конфиг id',  
+`delmark` int(11) NULL COMMENT 'скрытие при удалении, для сохранения статистики за прошлые периоды', 
+PRIMARY KEY (id),
+FOREIGN KEY (`user_status`) REFERENCES `".$GLOBALS['config']['db_name']."`.`user_status`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
+FOREIGN KEY (`role`) REFERENCES `".$GLOBALS['config']['db_name']."`.`role`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
+FOREIGN KEY (`config`) REFERENCES `".$GLOBALS['config']['db_name']."`.`config`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
+INDEX (`user_status`),
+INDEX (`role`),
+INDEX (`config`)
 ) 
 COLLATE 'utf8_general_ci'
 ENGINE=InnoDB
@@ -172,11 +172,11 @@ $sql=
 "CREATE TABLE 
 `".$GLOBALS['config']['db_name']."`.`group` 
 ( 
-	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
-	`name` varchar(100) NOT NULL COMMENT 'Имя пользователя',
-	`delmark` int(11) NULL COMMENT 'Сатус  ползователя( скрытие при удалении, для сохранения статистики за прошлые периоды)', 
-	PRIMARY KEY (id),
-	INDEX (`name`)
+`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
+`name` varchar(100) NOT NULL COMMENT 'Имя пользователя',
+`delmark` int(11) NULL COMMENT 'Сатус  ползователя( скрытие при удалении, для сохранения статистики за прошлые периоды)', 
+PRIMARY KEY (id),
+INDEX (`name`)
 ) 
 COLLATE 'utf8_general_ci'
 ENGINE=InnoDB
@@ -195,14 +195,14 @@ $sql=
 "CREATE TABLE 
 `".$GLOBALS['config']['db_name']."`.`registr_user_group` 
 ( 
-	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
-	`group` int(11) NULL COMMENT 'id группы пользователей',
-	`user` int(11) NULL COMMENT 'id пользователя',
-	PRIMARY KEY (id),
-	INDEX (`group`),
-	INDEX (`user`),
-	FOREIGN KEY (`group`) REFERENCES `".$GLOBALS['config']['db_name']."`.`group`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
-	FOREIGN KEY (`user`) REFERENCES `".$GLOBALS['config']['db_name']."`.`user`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION
+`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
+`group` int(11) NULL COMMENT 'id группы пользователей',
+`user` int(11) NULL COMMENT 'id пользователя',
+PRIMARY KEY (id),
+INDEX (`group`),
+INDEX (`user`),
+FOREIGN KEY (`group`) REFERENCES `".$GLOBALS['config']['db_name']."`.`group`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
+FOREIGN KEY (`user`) REFERENCES `".$GLOBALS['config']['db_name']."`.`user`(`id`) ON DELETE SET NULL ON UPDATE NO ACTION
 ) 
 COLLATE 'utf8_general_ci'
 ENGINE=InnoDB
@@ -222,11 +222,11 @@ $sql=
 "CREATE TABLE 
 `".$GLOBALS['config']['db_name']."`.`test` 
 ( 
-	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
-	`name` varchar(100) NOT NULL COMMENT 'название теста',
-	`delmark` int(11) NULL COMMENT 'скрытие при удалении, для сохранения статистики за прошлые периоды', 
-	PRIMARY KEY (id),
-	INDEX (`name`)
+`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
+`name` varchar(100) NOT NULL COMMENT 'название теста',
+`delmark` int(11) NULL COMMENT 'скрытие при удалении, для сохранения статистики за прошлые периоды', 
+PRIMARY KEY (id),
+INDEX (`name`)
 ) 
 COLLATE 'utf8_general_ci'
 ENGINE=InnoDB
@@ -244,11 +244,11 @@ $sql=
 "CREATE TABLE 
 `".$GLOBALS['config']['db_name']."`.`question` 
 ( 
-	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
-	`name` varchar(100) NOT NULL COMMENT 'название вопроса',
-	`delmark` int(11) NULL COMMENT 'скрытие при удалении, для сохранения статистики за прошлые периоды', 
-	PRIMARY KEY (id),
-	INDEX (`name`)
+`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
+`name` varchar(100) NOT NULL COMMENT 'название вопроса',
+`delmark` int(11) NULL COMMENT 'скрытие при удалении, для сохранения статистики за прошлые периоды', 
+PRIMARY KEY (id),
+INDEX (`name`)
 ) 
 COLLATE 'utf8_general_ci'
 ENGINE=InnoDB
@@ -268,14 +268,14 @@ $sql=
 "CREATE TABLE 
 `".$GLOBALS['config']['db_name']."`.`answer` 
 ( 
-	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
-	`text` varchar(100) NOT NULL COMMENT 'ответы',
-	`question` int(11) NULL COMMENT 'ссылка на вопрос',
-	`flag` boolean COMMENT 'правильный/неправильный',
-	`delmark` int(11) NULL COMMENT 'скрытие при удалении, для сохранения статистики за прошлые периоды', 
-	PRIMARY KEY (id),
-	INDEX (`text`),
-	FOREIGN KEY (`question`) REFERENCES `".$GLOBALS['config']['db_name']."`.`question`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
+`text` varchar(100) NOT NULL COMMENT 'ответы',
+`question` int(11) NULL COMMENT 'ссылка на вопрос',
+`flag` boolean COMMENT 'правильный/неправильный',
+`delmark` int(11) NULL COMMENT 'скрытие при удалении, для сохранения статистики за прошлые периоды', 
+PRIMARY KEY (id),
+INDEX (`text`),
+FOREIGN KEY (`question`) REFERENCES `".$GLOBALS['config']['db_name']."`.`question`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) 
 COLLATE 'utf8_general_ci'
 ENGINE=InnoDB
@@ -293,15 +293,15 @@ $sql=
 "CREATE TABLE 
 `".$GLOBALS['config']['db_name']."`.`test_question_registr` 
 ( 
-	`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
-	`question` int(11) NOT NULL COMMENT 'идентификатор вопроса',
-	`test` int(11) NOT NULL COMMENT 'идентификатор ответа',
-	PRIMARY KEY (id),
-	INDEX (`question`),
-	INDEX (`test`),
-	
-	FOREIGN KEY (`question`) REFERENCES `".$GLOBALS['config']['db_name']."`.`question`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (`test`) REFERENCES `".$GLOBALS['config']['db_name']."`.`test`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+`id` int(11) NOT NULL auto_increment COMMENT 'Идентификатор', 
+`question` int(11) NOT NULL COMMENT 'идентификатор вопроса',
+`test` int(11) NOT NULL COMMENT 'идентификатор ответа',
+PRIMARY KEY (id),
+INDEX (`question`),
+INDEX (`test`),
+
+FOREIGN KEY (`question`) REFERENCES `".$GLOBALS['config']['db_name']."`.`question`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (`test`) REFERENCES `".$GLOBALS['config']['db_name']."`.`test`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) 
 COLLATE 'utf8_general_ci'
 ENGINE=InnoDB
@@ -320,20 +320,20 @@ $sql=
 "CREATE TABLE
 `".$GLOBALS['config']['db_name']."`.`statistiks`
 (
-	`id` INT NOT NULL AUTO_INCREMENT COMMENT 'идентификатор' ,
-	`user` INT NULL DEFAULT NULL COMMENT 'id пользователя' ,
-	`test` INT NULL DEFAULT NULL COMMENT 'id теста' ,
-	`t_start` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'время начала  теста' ,
-	`t_stop` TIMESTAMP NULL COMMENT 'время конца теста' ,
-	`flag` BOOLEAN NOT NULL COMMENT 'сдан или не сдан' ,
-	`error_count` INT NOT NULL COMMENT 'количество ошибок' ,
-	`total_count` INT NOT NULL COMMENT 'общее количество ответов' ,
-	`max_error_count` INT NOT NULL COMMENT 'максимальное количество ошибок' ,
-	PRIMARY KEY  (`id`),
-	INDEX  (`user`),
-	INDEX  (`test`),
-	FOREIGN KEY (`user`) REFERENCES `".$GLOBALS['config']['db_name']."`.`user`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (`test`) REFERENCES `".$GLOBALS['config']['db_name']."`.`test`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+`id` INT NOT NULL AUTO_INCREMENT COMMENT 'идентификатор' ,
+`user` INT NULL DEFAULT NULL COMMENT 'id пользователя' ,
+`test` INT NULL DEFAULT NULL COMMENT 'id теста' ,
+`t_start` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'время начала  теста' ,
+`t_stop` TIMESTAMP NULL COMMENT 'время конца теста' ,
+`flag` BOOLEAN NOT NULL COMMENT 'сдан или не сдан' ,
+`error_count` INT NOT NULL COMMENT 'количество ошибок' ,
+`total_count` INT NOT NULL COMMENT 'общее количество ответов' ,
+`max_error_count` INT NOT NULL COMMENT 'максимальное количество ошибок' ,
+PRIMARY KEY  (`id`),
+INDEX  (`user`),
+INDEX  (`test`),
+FOREIGN KEY (`user`) REFERENCES `".$GLOBALS['config']['db_name']."`.`user`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (`test`) REFERENCES `".$GLOBALS['config']['db_name']."`.`test`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
 )
 ENGINE = InnoDB
 COMMENT 'статистика'";
@@ -350,13 +350,13 @@ $sql=
 "CREATE TABLE
 `".$GLOBALS['config']['db_name']."`.`st_question`
 (
-	`id` INT NOT NULL AUTO_INCREMENT COMMENT 'идентификатор' ,
-	`statistiks` INT NULL DEFAULT NULL COMMENT 'id теста' ,
-	`t_start` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'время начала  теста' ,
-	`t_stop` TIMESTAMP NULL COMMENT 'время конца теста' ,
-	PRIMARY KEY  (`id`),
-	INDEX  (`statistiks`),
-	FOREIGN KEY (`statistiks`) REFERENCES `".$GLOBALS['config']['db_name']."`.`statistiks`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+`id` INT NOT NULL AUTO_INCREMENT COMMENT 'идентификатор' ,
+`statistiks` INT NULL DEFAULT NULL COMMENT 'id теста' ,
+`t_start` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'время начала  теста' ,
+`t_stop` TIMESTAMP NULL COMMENT 'время конца теста' ,
+PRIMARY KEY  (`id`),
+INDEX  (`statistiks`),
+FOREIGN KEY (`statistiks`) REFERENCES `".$GLOBALS['config']['db_name']."`.`statistiks`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
 )
 ENGINE = InnoDB
 COMMENT 'статистика по ответам'";
@@ -373,15 +373,15 @@ $sql=
 "CREATE TABLE
 `".$GLOBALS['config']['db_name']."`.`st_answer`
 (
-	`id` INT NOT NULL AUTO_INCREMENT COMMENT 'идентификатор' ,
-	`st_question` INT NULL DEFAULT NULL COMMENT 'id статистики по вопросам' ,
-	`answer` INT NULL DEFAULT NULL COMMENT 'id ответа' ,
-	`flag` boolean COMMENT 'флаг установленный на ответе в момент прохождения',
-	PRIMARY KEY  (`id`),
-	INDEX  (`st_question`),
-	INDEX  (`answer`),
-	FOREIGN KEY (`st_question`) REFERENCES `".$GLOBALS['config']['db_name']."`.`st_question`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (`answer`) REFERENCES `".$GLOBALS['config']['db_name']."`.`answer`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+`id` INT NOT NULL AUTO_INCREMENT COMMENT 'идентификатор' ,
+`st_question` INT NULL DEFAULT NULL COMMENT 'id статистики по вопросам' ,
+`answer` INT NULL DEFAULT NULL COMMENT 'id ответа' ,
+`flag` boolean COMMENT 'флаг установленный на ответе в момент прохождения',
+PRIMARY KEY  (`id`),
+INDEX  (`st_question`),
+INDEX  (`answer`),
+FOREIGN KEY (`st_question`) REFERENCES `".$GLOBALS['config']['db_name']."`.`st_question`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (`answer`) REFERENCES `".$GLOBALS['config']['db_name']."`.`answer`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
 )
 ENGINE = InnoDB
 COMMENT 'статистика по ответам'";
@@ -395,14 +395,8 @@ try {
 };
 
 //--- создание  вьюшки  list_user 
-$sql= 
-"SELECT 'id' FROM `".$GLOBALS['config']['db_name']."`.`user`
-LEFT JOIN
-`".$GLOBALS['config']['db_name']."`.`user_status`
-ON
-`user`.`user_status` = `user_status`.`id`";
-/*"CREATE VIEW list_user AS SELECT
-
+$sql=
+"CREATE VIEW `".$GLOBALS['config']['db_name']."`.`list_user` AS SELECT
 `user`.`id`, 
 `user`.`name`, 
 `user`.`surname`, 
@@ -421,32 +415,163 @@ FROM
 LEFT JOIN
 `".$GLOBALS['config']['db_name']."`.`user_status`
 ON
-`user`.`user_status` = `user_status`.`id`,
+`user`.`user_status` = `user_status`.`id`
 LEFT JOIN
 `".$GLOBALS['config']['db_name']."`.`role`
 ON
-`user`.`role` = `role`.`id`,
+`user`.`role` = `role`.`id`
 LEFT JOIN
 `".$GLOBALS['config']['db_name']."`.`config`
 ON
-`user`.`config` = `config`.`id`;
-ENGINE = InnoDB
-COMMENT 'Вьюшка пользователя'";
-*/
-
+`user`.`config` = `config`.`id`";
 
 try {
 	$query=db::init()->query($sql);
-	echo $sql;
-	echo '________________';
-	//echo $query;
-    echo '<pre>';
-	print_r($query);
-	echo '</pre>';	
-} catch (Exception $e) {
+} 
+catch (Exception $e) {
 	echo '<pre>';
 	print_r($e);
-	echo '</pre>';	
+	echo '</pre>';		
 };
 
+//--- создание  вьюшки  list_answer
+$sql=
+"CREATE VIEW `".$GLOBALS['config']['db_name']."`.`list_answer` AS SELECT
+`answer`.`id`,
+`text`,
+`question`.`name`,
+`flag`,
+`answer`.`delmark`
+FROM 
+`".$GLOBALS['config']['db_name']."`.`answer`
+LEFT JOIN
+`".$GLOBALS['config']['db_name']."`.`question`
+ON
+`answer`.`question` = `question`.`id`";
+
+try {
+	$query=db::init()->query($sql);
+} 
+catch (Exception $e) {
+	echo '<pre>';
+	print_r($e);
+	echo '</pre>';
+};
+
+//--- создание  вьюшки  list_components
+$sql=
+"CREATE VIEW `".$GLOBALS['config']['db_name']."`.`list_components` AS SELECT
+`components`.`id`,
+`config`.`name`,
+`components`.`name` AS `components_name`,
+`signature`
+FROM 
+`".$GLOBALS['config']['db_name']."`.`components`
+LEFT JOIN
+`".$GLOBALS['config']['db_name']."`.`config`
+ON
+`components`.`config` = `config`.`id`";
+
+try {
+	$query=db::init()->query($sql);
+} 
+catch (Exception $e) {
+	echo '<pre>';
+	print_r($e);
+	echo '</pre>';
+};
+
+//--- создание  вьюшки  list_statistiks
+$sql=
+"CREATE VIEW `".$GLOBALS['config']['db_name']."`.`list_statistiks` AS SELECT
+`statistiks`.`id`,
+`user`,
+`test`.`name`,
+`t_start`,
+`t_stop`,
+`flag`,
+`error_count`,
+`total_count`,
+`max_error_count`
+FROM 
+`".$GLOBALS['config']['db_name']."`.`statistiks`
+LEFT JOIN
+`".$GLOBALS['config']['db_name']."`.`test`
+ON
+`statistiks`.`test` = `test`.`id`";
+
+try {
+	$query=db::init()->query($sql);
+} 
+catch (Exception $e) {
+	echo '<pre>';
+	print_r($e);
+	echo '</pre>';
+};
+
+//--- создание  вьюшки  list_st_answer
+$sql=
+"CREATE VIEW `".$GLOBALS['config']['db_name']."`.`list_st_answer` AS SELECT
+`st_answer`.`id`,
+`st_question`.`t_start` AS `statistiks_t_start`,
+`st_question`.`t_stop` AS `statistiks_t_stop`,
+`answer`.`text`,
+`answer`.`flag`
+FROM 
+`".$GLOBALS['config']['db_name']."`.`st_answer`
+LEFT JOIN
+`".$GLOBALS['config']['db_name']."`.`answer`
+ON
+`st_answer`.`answer` = `answer`.`id`
+LEFT JOIN
+`".$GLOBALS['config']['db_name']."`.`st_question`
+ON
+`st_answer`.`st_question` = `st_question`.`id`";
+
+try {
+	$query=db::init()->query($sql);
+} 
+catch (Exception $e) {
+	echo '<pre>';
+	print_r($e);
+	echo '</pre>';
+};
+
+//--- создание  вьюшки  list_st_question
+$sql=
+"CREATE VIEW `".$GLOBALS['config']['db_name']."`.`list_st_question` AS SELECT
+`st_question`.`id`,
+`statistiks`.`id`AS `statistiks_id`,
+`statistiks`.`user`,
+`test`.`name`,
+`statistiks`.`t_start` AS `t_start1`,
+`statistiks`.`t_stop`AS `t_stOP1`,
+`statistiks`.`flag`,
+`statistiks`.`error_count`,
+`statistiks`.`total_count`,
+`statistiks`.`max_error_count`,
+`st_question`.`t_start` AS `statistiks_t_start`,
+`st_question`.`t_stop` AS `statistiks_t_stop`
+FROM 
+`".$GLOBALS['config']['db_name']."`.`st_question`
+LEFT JOIN
+`".$GLOBALS['config']['db_name']."`.`statistiks`
+ON
+`st_question`.`statistiks` = `statistiks`.`id`
+LEFT JOIN
+`".$GLOBALS['config']['db_name']."`.`test`
+ON
+`statistiks`.`test` = `test`.`id`";
+
+try {
+	$query=db::init()->query($sql);
+} 
+catch (Exception $e) {
+	echo '<pre>';
+	print_r($e);
+	echo '</pre>';
+};
+
+
+echo "-----------------------------------База  данных создана";
 ?>
