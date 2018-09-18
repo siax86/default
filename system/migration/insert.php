@@ -22,10 +22,7 @@ for ($i=0; $i < $col_status; $i++)
 	);
 
 	$id=db::init()->insert($sql,$param);
-	echo 'insert id: '.$id.'<br>';
 };
-echo '-----------------------------------статус: '.$i.'<br>';
-
 
 /*---------заполнение справочника роли */
 
@@ -38,9 +35,7 @@ for ($i=0; $i < $col_user; $i++)
 	);
 
 	$id=db::init()->insert($sql,$param);
-	echo 'insert id: '.$id.'<br>';
 };
-echo '-----------------------------------role: '.$i.'<br>';
 
 /*---------заполнение справочника конфиг */
 $sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`config`(`name`) VALUES (:name)";
@@ -51,9 +46,7 @@ for ($i=0; $i < $col_question; $i++)
 	);
 
 	$id=db::init()->insert($sql,$param);
-	echo 'insertgr id: '.$id.'<br>';
 };
-echo '-----------------------------------config: '.$i.'<br>';
 
 
 /*---------заполнение справочника пользователи */
@@ -73,9 +66,7 @@ for ($i=0; $i < $col_user; $i++)
 	);
 
 	$id=db::init()->insert($sql,$param);
-	echo 'insert id_: '.$id.'<br>';
 };
-echo '-----------------------------------пользователи: '.$i.'<br>';
 
 /*---------заполнение справочника группы пользователей */
 $sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`group`(`name`,`delmark`) VALUES (:name, :delmark)";
@@ -87,9 +78,7 @@ for ($i=0; $i < $col_group; $i++)
 	);
 
 	$id=db::init()->insert($sql,$param);
-	echo 'insertgr id: '.$id.'<br>';
 };
-echo '-----------------------------------группы: '.$i.'<br>';
 
 /*---------заполнение справочника роли пользователей */
 $sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`role`(`name`,`delmark`) VALUES (:name, :delmark)";
@@ -101,9 +90,7 @@ for ($i=1; $i < ($col_role+1); $i++)
 	);
 
 	$id=db::init()->insert($sql,$param);
-	echo 'insertgr id: '.$id.'<br>';
 };
-echo '-----------------------------------роли: '.$i.'<br>';
 
 
 /*---------заполнение справочника тесты */
@@ -116,9 +103,7 @@ for ($i=0; $i < $col_test; $i++)
 	);
 
 	$id=db::init()->insert($sql,$param);
-	echo 'insertgr id: '.$id.'<br>';
 };
-echo '-----------------------------------тесты: '.$i.'<br>';
 
 
 /*---------заполнение справочника вопросы */
@@ -131,9 +116,7 @@ for ($i=0; $i < $col_question; $i++)
 	);
 
 	$id=db::init()->insert($sql,$param);
-	echo 'insertgr id: '.$id.'<br>';
 };
-echo '-----------------------------------вопросы: '.$i.'<br>';
 /*---------заполнение test_question_registr */
 $sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`test_question_registr`(`question`,`test`) VALUES (:question, :test)";
 for ($i=0; $i < $col_question; $i++)
@@ -144,9 +127,7 @@ for ($i=0; $i < $col_question; $i++)
 	);
 
 	$id=db::init()->insert($sql,$param);
-	echo 'insertgr id: '.$id.'<br>';
 };
-echo '-----------------------------------test_question_registr: '.$i.'<br>';
 
 /*---------заполнение registr_user_group */
 $sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`registr_user_group`(`group`,`user`) VALUES (:group, :user)";
@@ -158,9 +139,7 @@ for ($i=0; $i < $col_group; $i++)
 	);
 
 	$id=db::init()->insert($sql,$param);
-	echo 'insertgr id: '.$id.'<br>';
 };
-echo '-----------------------------------test_question_registr: '.$i.'<br>';
 
 /*---------заполнение справочника ответы */
 $sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`answer`(`text`,`question`,`flag`,`delmark`) VALUES (:text, :question, :flag, :delmark)";
@@ -174,13 +153,10 @@ for ($i=0; $i < $col_answer; $i++)
 	);
 
 	$id=db::init()->insert($sql,$param);
-	echo 'insertgr id: '.$id.'<br>';
 };
-echo '-----------------------------------ответы: '.$i.'<br>';
 
 /*---------заполнение справочника статистикс */
 $start = mktime(0,0,0,2006,1,1); 
-echo '----------qwerty-----------'.$start.'<br>';
 $end  = time(); 
 $randomStamp = rand($start,$end); 
 $sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`statistiks`(`user`,`test`,`t_stop`,`flag`,`error_count`,`total_count`,`max_error_count`) VALUES (:user,:test,:t_stop,:flag,:error_count,:total_count,:max_error_count)";
@@ -197,9 +173,7 @@ for ($i=0; $i < $col_test; $i++)
 	);
 
 	$id=db::init()->insert($sql,$param);
-	echo 'insertgr id: '.$id.'<br>';
 };
-echo '-----------------------------------статистика ститистикс: '.$i.'<br>';
 
 /*---------заполнение справочника статистика-вопросы */
 
@@ -212,9 +186,7 @@ for ($i=0; $i < $col_question; $i++)
 	);
 
 	$id=db::init()->insert($sql,$param);
-	echo 'insertgr id: '.$id.'<br>';
 };
-echo '-----------------------------------статистика вопросы: '.$i.'<br>';
 
 /*---------заполнение справочника статистика-ответы */
 $sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`st_answer`(`st_question`,`answer`,`flag`) VALUES (:st_question, :answer, :flag)";
@@ -227,9 +199,7 @@ for ($i=0; $i < $col_question; $i++)
 	);
 
 	$id=db::init()->insert($sql,$param);
-	echo 'insertgr id: '.$id.'<br>';
 };
-echo '-----------------------------------статистика ответы: '.$i.'<br>';
 
 
 /*----------заполнение таблицы components */
@@ -261,9 +231,7 @@ for ($i=0; $i < 8; $i++)
 		'signature' =>$tmp1[$i] // значение может быть так же user_status или group 
 	);
 	$id=db::init()->insert($sql,$param);
-	echo 'insertgr id: '.$id.'<br>';
 };
-echo '-----------------------------------components1: '.$i.'<br>';
 
 /*---------заполнение справочника `access */
 $sql="INSERT INTO `".$GLOBALS['config']['db_name']."`.`access`(`components`,`access`) VALUES ( :components, :access)";
@@ -274,8 +242,7 @@ for ($i=1; $i < 4; $i++)
 		'access' => $i//rand(1,3)
 	);
 	$id=db::init()->insert($sql,$param);
-	echo 'insertgr id: '.$id.'<br>';
 };
-echo '-----------------------------------access: '.$i.'<br>';
+echo '-----------------------------------База заполнена успешно'.'<br>';
 
 ?>
