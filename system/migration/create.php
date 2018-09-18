@@ -458,7 +458,7 @@ catch (Exception $e) {
 	echo '</pre>';
 };
 
-//--- создание  вьюшки  list_components
+/*//--- создание  вьюшки  list_components
 $sql=
 "CREATE VIEW `".$GLOBALS['config']['db_name']."`.`list_components` AS SELECT
 `components`.`id`,
@@ -479,7 +479,7 @@ catch (Exception $e) {
 	echo '<pre>';
 	print_r($e);
 	echo '</pre>';
-};
+};*/
 
 //--- создание  вьюшки  list_statistiks
 $sql=
@@ -509,7 +509,7 @@ catch (Exception $e) {
 	echo '</pre>';
 };
 
-//--- создание  вьюшки  list_st_answer
+/*//--- создание  вьюшки  list_st_answer
 $sql=
 "CREATE VIEW `".$GLOBALS['config']['db_name']."`.`list_st_answer` AS SELECT
 `st_answer`.`id`,
@@ -536,7 +536,6 @@ catch (Exception $e) {
 	print_r($e);
 	echo '</pre>';
 };
-
 //--- создание  вьюшки  list_st_question
 $sql=
 "CREATE VIEW `".$GLOBALS['config']['db_name']."`.`list_st_question` AS SELECT
@@ -570,7 +569,7 @@ catch (Exception $e) {
 	echo '<pre>';
 	print_r($e);
 	echo '</pre>';
-};
+};*/
 
 
 echo "-----------------------------------База  данных создана".'<br>';
