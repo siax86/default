@@ -11,33 +11,65 @@
 </div>
 <script type="text/javascript">
 
-        Columns = 
-        [
-        { title: "id", data: "DT_RowId", className: "id"},
-        { title: "Имя пользователя", data: "name", className: "name"},
-        { title: "Фамилия пользователя", data: "surname", className: "surname" },
-        { title: "Отчество пользователя", data: "middlename", className: "middlename" },
-        { title: "Логин", data: "login", className: "login"},
-        { title: "Пароль", data: "password", className: "password" },
-        { title: "Статус пользователя", data: "user_status", className: "user_status"},
-        { title: "delmark", data: "delmark", className: "delmark" }
-        ];
+  Columns = 
+  [
+  { title: "id", data: "DT_RowId", className: "id"},
+  { title: "Имя пользователя", data: "name", className: "name"},
+  { title: "Фамилия пользователя", data: "surname", className: "surname" },
+  { title: "Отчество пользователя", data: "middlename", className: "middlename" },
+  { title: "Логин", data: "login", className: "login"},
+  { title: "Пароль", data: "password", className: "password" },
+  { title: "Статус пользователя", data: "user_status", className: "user_status"},
+  { title: "Статус пользователя", data: "user_status_name", className: "user_status_name"},
+  { title: "Статус пользователя", data: "user_status_color", className: "user_status_color"},
+  { title: "role", data: "role", className: "role"},
+  { title: "Роль", data: "role_name", className: "role_name"},
+  { title: "config", data: "config", className: "config"},
+  { title: "Конфигурация", data: "config_name", className: "config_name" },
+  { title: "delmark", data: "delmark", className: "delmark" }
+  ];
 
-        signature = 'user';
+  signature = 'list_user';
 
 
-    var dt = $('#datatable').DataTable( {
-      "processing": true,
-      "serverSide": true,
-      columns: Columns,
-      "ajax": "/api/datatable.php?signature=" + signature,
-      "createdRow": function( row, data, dataIndex ) {
-        $(row).addClass('loadmodal');
-        $(row).attr('data-query', 'update');
-        $(row).attr('data-obj', signature);
-        $(row).attr('data-data', JSON.stringify(data));
+  var dt = $('#datatable').DataTable( {
+    "processing": true,
+    "serverSide": true,
+    columns: Columns,
+    "ajax": "/api/datatable.php?signature=" + signature,
+    "createdRow": function( row, data, dataIndex ) {
+      $(row).addClass('loadmodal');
+      $(row).attr('data-query', 'update');
+      $(row).attr('data-obj', 'user');
+      $(row).attr('data-data', JSON.stringify(data));
 
-        }
-      
-    });
+    },
+    "columnDefs" : [
+    {
+      "render": function(data,type,row)
+      {
+        return '<span style="color:' + row['user_status_color'] + '">' + row['user_status_name'] + '</span>';
+      },
+      "targets": getColumnIndexesWithClass(Columns,"user_status_name")
+    },
+    {
+      "visible":false,
+      "targets": getColumnIndexesWithClass(Columns,"user_status")
+    },
+    {
+      "visible":false,
+      "targets": getColumnIndexesWithClass(Columns,"user_status_color")
+    },
+        {
+      "visible":false,
+      "targets": getColumnIndexesWithClass(Columns,"role")
+    },
+    {
+      "visible":false,
+      "targets": getColumnIndexesWithClass(Columns,"config")
+    }
+
+    ]
+
+  });
 

@@ -33,8 +33,23 @@
           </div>
           <div class="form-group">
             <label for="user_status">Статус пользователя</label>
-            <input name="user_status" type="text" class="form-control" id="user_status">
+            <select name="user_status" class="form-control" id="user_status"></select>
           </div>
+          <div class="form-group">
+            <label for="config">Config</label>
+            <select name="config" class="form-control" id="config"></select>
+          </div>
+          <div class="form-group">
+            <label for="role">Роль</label>
+            <select name="role" class="form-control" id="role"></select>
+          </div>
+
+          <div class="form-group">
+            <label for="role">Группа</label>
+            <select name="group" class="mdb-select md-form form-control" id="group" multiple></select>
+            <!--<button class="btn-save btn btn-primary btn-sm">Save</button>-->
+          </div>
+
           <div class="form-group">
             <label for="delmark">delmark</label>
             <input name="delmark" type="text" class="form-control" id="delmark">

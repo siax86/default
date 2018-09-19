@@ -2,17 +2,17 @@
 include_once $_SERVER['DOCUMENT_ROOT'].'/system/declaration.php';
 if(isset($_SESSION['user']->id))
 {
-?>
-<!Doctype html>
-<html lang="en">
+  ?>
+  <!Doctype html>
+  <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Dashboard</title>
     <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.css">
-    <!--<link rel="stylesheet" href="/lib/bootstrap/jquery/jquery.dataTables.css"> -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css"> 
-  
+    <link rel="stylesheet" href="/lib/jquery/datatables.css"> 
+    <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css"> -->
+
 
   </head>
 
@@ -45,14 +45,16 @@ if(isset($_SESSION['user']->id))
       </div>
     </div>
     <script src="/lib/jquery/jquery.js"></script>
+    <script src="/lib/jquery/datatables.js"></script>
     <script src="/lib/bootstrap/js/bootstrap.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    <!--<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>-->
 
     <script type="text/javascript" charset="utf8" src="/js/script.js"></script>
     
   </body>
-</html>
-<?php
+  </html>
+  <?php
 }
 else
 {

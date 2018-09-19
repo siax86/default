@@ -1,23 +1,70 @@
       function getColumnIndexesWithClass( columns, className ) {
         var indexes = [];
         $.each( columns, function( index, columnInfo ) {
-        if( columnInfo.className == className ) {
-          indexes.push( index );
-        }
-      });
+          if( columnInfo.className == className ) {
+            indexes.push( index );
+          }
+        });
 
         return indexes;
       };
 
+      /*создание объекта user*/
       user = new Object();
 
-
+      /*Функция загрузки нужной view*/
       function loadView(place,obj,view,calback = false)
       {
         $(place).empty();
         $(place).load('/app/view/' + obj + '/' + view + '.php',calback);
       }
 
+      //selectConstructor('#user_status','user_status')
+
+      /*функция загрузки данных с сервера в тег select*/
+      function selectConstructor(_element, _class, id = false)
+      {
+        $.ajax({
+          url: '/api/call.php?client=app&query=get&data={"class":"' + _class + '"}',
+          type: "POST",
+          dataType: "json",
+          success: function(result){
+            //console.log(result);
+
+            /*действия при редактировании*/
+            if (id)
+            {
+              $.each(result, function(row,obj){
+                if (id==obj.id)
+                {
+                  var test = '<option value="'+obj.id+'" selected>'+obj.name+'</option>';
+                }
+                else
+                {
+                  var test = '<option value="'+obj.id+'">'+obj.name+'</option>';
+                };
+
+                $(_element).append(test);
+
+              })
+            }
+
+            /*действия при создании*/
+            else
+            {
+              $.each(result, function(row,obj){
+                var test = '<option value="'+obj.id+'">'+obj.name+'</option>';
+                console.log(test);
+                $(_element).append(test);
+              })
+            };
+
+          }
+        });
+
+      }
+
+      /*загрузка контента в боковую панель(second-navbar)*/
       $(document).ready(function() {
         $.ajax({
           url: '/api/call.php?client=app&query=get&data={"class":"user","data":{"id":"current"}}',
@@ -39,11 +86,8 @@
               user.loadComponent();
             });
             loadView('#content','global','homepage');
-
-              
           }
         });
-
       })
 
       $('body').on('click','.component-link',function() {
@@ -62,27 +106,40 @@
         switch (query) {
           case 'create':
           loadView('#modalbox',obj,'modal',function(){
+            //find select in modal, get name and selectConstruct
+            $('#Modal').find('select').each(function(){
+              var name = $(this).attr('name');
+              selectConstructor('#' + name, name);
+            });
             $('#Modal').modal('show');
           });
           
-            break;
+          break;
 
           case 'update':
-            loadView('#modalbox',obj,'modal',function(){
-              $.each(data,function(key,val){
-                if(key == 'DT_RowId')
-                {
-                  $('#id').val(val);
-                }
-                else
-                {
-                  $('#' + key).val(val);
+          loadView('#modalbox',obj,'modal',function(){
+            $.each(data,function(key,val){
+              if(key == 'DT_RowId')
+              {
+                $('#id').val(val);
+              }
+              else
+              {
+                  //if current element by id is select -> selectConst with id
+                  if($('#' + key).is('select'))
+                  {
+                    selectConstructor('#' + key, key, val);
+                  }
+                  else
+                  {
+                    $('#' + key).val(val);
+                  };
                 };
               });
-              $('#Modal').modal('show');
-            });
+            $('#Modal').modal('show');
+          });
 
-            break;
+          break;
         };
 
         
