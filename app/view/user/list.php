@@ -21,7 +21,7 @@
   { title: "Пароль", data: "password", className: "password" },
   { title: "Статус пользователя", data: "user_status", className: "user_status"},
   { title: "Статус пользователя", data: "user_status_name", className: "user_status_name"},
-  { title: "Статус пользователя", data: "user_status_color", className: "user_status_color"},
+  //{ title: "Статус пользователя", data: "user_status_color", className: "user_status_color"},
   { title: "role", data: "role", className: "role"},
   { title: "Роль", data: "role_name", className: "role_name"},
   { title: "config", data: "config", className: "config"},

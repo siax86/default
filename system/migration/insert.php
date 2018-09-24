@@ -165,7 +165,8 @@ for ($i=0; $i < $col_test; $i++)
 	$param = array(
 		'user' => rand(1,$col_user),
 		'test' => rand(1,$col_test),
-		't_stop' => date("Y-m-d H:i:s",rand($t_start,$t_end)),
+		//'t_stop' => date("Y-m-d H:i:s",rand($t_start,$t_end)),
+		't_stop' => date('2010-12-03 03:27:05'),
 		'flag' => rand(0,1),
 		'error_count' => rand(1,$col_answer),
 		'total_count' => rand(1,$col_answer),
@@ -182,7 +183,8 @@ for ($i=0; $i < $col_question; $i++)
 {	
 	$param = array(
 		'statistiks' => rand(1,$col_test),
-		't_stop' => date("Y-m-d H:i:s",rand($t_start,$t_end))
+	    't_stop' => date('2010-12-03 03:27:05')
+		//'t_stop' => date("Y-m-d H:i:s",rand($t_start,$t_end))
 	);
 
 	$id=db::init()->insert($sql,$param);
