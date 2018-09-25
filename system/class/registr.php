@@ -2,36 +2,46 @@
 /**
 * universal registr
 */
-include_once $_SERVER['DOCUMENT_ROOT'].'/system/config/config.current.php';
-
 class registr
 {
 
 	function __construct($request)
 	{
 		
-		switch ($request['query']) 
+		/*switch ($_REQUEST['query'])
 		{
-			
-			case 'get':
-echo 'все так!';
-			$data= json_decode($request['data']);
+			case 'get':*/
 
-			
-				if($data->obj == 'registr')
+			$data= json_decode($_REQUEST['data']);
+			if(isset($data->data)) 
+			{
+				if ($data->data->name=='registr_user_group')
+					//?query=get&data={"class":"registr","data":{"name":"registr_user_group","user":"1"}}
 				{
-					
-					//echo json_encode($_SESSION['registr'],JSON_UNESCAPED_UNICODE); 
+					$sql="SELECT * FROM `".$GLOBALS['config']['db_name']."`.`".$data->data->name."` where `user`= ".$data->data->user."";
+				db::init();
+
+				try	
+				{
+					$ids=db::init()->getAll($sql);
 				}
-				else
+				catch(Exception $e)
 				{
-					echo 'что-то пошло не так!';
-				};
-			
-			
-		};
-
-	}	
-}
-
+					echo '<pre>';
+					print_r($e);
+					echo '</pre>';
+				}
+				$result = array();
+				foreach ($ids as $id)
+				{
+					$result[] = $id;
+				}
+				echo json_encode($result,JSON_UNESCAPED_UNICODE);
+				}
+				
+				
+			}
+		//};
+	}
+}	
 ?>

@@ -36,12 +36,18 @@ class api
 				{
 					echo json_encode($_SESSION['user'],JSON_UNESCAPED_UNICODE); 
 				}
+
+				if($data->class=='registr')
+				{ 	
+					$registr = new registr($request);
+				}
+
 				else
 				{
 					$object= new $data->class((array)$data->data);	
-
 					echo json_encode($object,JSON_UNESCAPED_UNICODE);
-				};
+				}
+
 			}
 			else
 			{
@@ -56,20 +62,14 @@ class api
 					echo '</pre>';
 
 				}
-				
+
 				$result = array();
 				foreach ($ids as $id)
 				{
 					$result[] = new $data->class($id);
 				};
 				echo json_encode($result,JSON_UNESCAPED_UNICODE);
-
 			};
-
-
-
-
-
 			break;
 
 			case 'set':
