@@ -11,6 +11,7 @@
 </div>
 <script type="text/javascript">
 
+  /*создаем массив колонок в таблице #datatable*/
   Columns = 
   [
   { title: "id", data: "DT_RowId", className: "id"},
@@ -31,7 +32,7 @@
 
   signature = 'list_user';
 
-
+  /*формирование таблицы с помощью плагина Datatable*/
   var dt = $('#datatable').DataTable( {
     "processing": true,
     "serverSide": true,
@@ -42,8 +43,9 @@
       $(row).attr('data-query', 'update');
       $(row).attr('data-obj', 'user');
       $(row).attr('data-data', JSON.stringify(data));
-
+      //console.log(JSON.stringify(data));
     },
+
     "columnDefs" : [
     {
       "render": function(data,type,row)

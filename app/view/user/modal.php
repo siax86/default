@@ -45,8 +45,8 @@
           </div>
 
           <div class="form-group">
-            <label for="role">Группа</label>
-            <select name="group" class="mdb-select md-form form-control" id="group" multiple></select>
+            <label for="group">Группа</label>
+            <select name="group" class="mdb-select md-form form-control" id="group" registr="registr_user_group" multiple></select>
             <!--<button class="btn-save btn btn-primary btn-sm">Save</button>-->
           </div>
 

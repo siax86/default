@@ -37,7 +37,7 @@ class api
 					echo json_encode($_SESSION['user'],JSON_UNESCAPED_UNICODE); 
 				}
 
-				if($data->class=='registr')
+				else if($data->class=='registr')
 				{ 	
 					$registr = new registr($request);
 				}
